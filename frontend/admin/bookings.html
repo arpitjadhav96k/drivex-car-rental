@@ -1128,313 +1128,427 @@
          JAVASCRIPT
     ========================= -->
 
-    <script>
+   ```html
+<script>
 
 
-        /* =========================
-           SEARCH BOOKINGS
-        ========================= */
+    /* =========================
+       SEARCH BOOKINGS
+    ========================= */
 
-        function searchBookings() {
+    function searchBookings() {
 
-            const search =
-                document
-                    .getElementById("searchInput")
-                    .value
-                    .toLowerCase();
-
-
-            const rows =
-                document.querySelectorAll(
-                    "#bookingTable tr"
-                );
+        const search =
+            document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
 
 
-            rows.forEach(function(row) {
-
-                const text =
-                    row.innerText.toLowerCase();
-
-
-                if (text.includes(search)) {
-
-                    row.style.display = "";
-
-                } else {
-
-                    row.style.display = "none";
-
-                }
-
-            });
-
-        }
+        const rows =
+            document.querySelectorAll(
+                "#bookingTable tr"
+            );
 
 
-        /* =========================
-           VIEW BOOKING
-        ========================= */
+        rows.forEach(function(row) {
 
-        function viewBooking(
-            id,
-            customer,
-            email,
-            car,
-            pickup,
-            returnDate,
-            location,
-            amount
-        ) {
-
-            document.getElementById("detailId").innerText = id;
-
-            document.getElementById("detailCustomer").innerText = customer;
-
-            document.getElementById("detailEmail").innerText = email;
-
-            document.getElementById("detailCar").innerText = car;
-
-            document.getElementById("detailPickup").innerText = pickup;
-
-            document.getElementById("detailReturn").innerText = returnDate;
-
-            document.getElementById("detailLocation").innerText = location;
-
-            document.getElementById("detailAmount").innerText = amount;
+            const text =
+                row.innerText.toLowerCase();
 
 
-            document.getElementById("bookingModal").style.display = "flex";
+            if (text.includes(search)) {
 
-        }
+                row.style.display = "";
 
+            } else {
 
-        /* =========================
-           CLOSE MODAL
-        ========================= */
-
-        function closeModal() {
-
-            document.getElementById("bookingModal").style.display = "none";
-
-        }
-
-
-        /* =========================
-           CLOSE MODAL WHEN CLICKING
-           OUTSIDE THE BOX
-        ========================= */
-
-        window.onclick = function(event) {
-
-            const modal =
-                document.getElementById("bookingModal");
-
-
-            if (event.target === modal) {
-
-                closeModal();
+                row.style.display = "none";
 
             }
 
-        };
+        });
 
-        /* =========================
-   LOAD REAL BOOKINGS
-========================= */
+    }
 
-fetch("http://localhost:8080/api/bookings")
-    .then(response => {
 
-        if (!response.ok) {
-            throw new Error("Failed to load bookings");
+    /* =========================
+       VIEW BOOKING
+    ========================= */
+
+    function viewBooking(
+        id,
+        customer,
+        email,
+        car,
+        pickup,
+        returnDate,
+        location,
+        amount
+    ) {
+
+        document.getElementById("detailId").innerText = id;
+
+        document.getElementById("detailCustomer").innerText = customer;
+
+        document.getElementById("detailEmail").innerText = email;
+
+        document.getElementById("detailCar").innerText = car;
+
+        document.getElementById("detailPickup").innerText = pickup;
+
+        document.getElementById("detailReturn").innerText = returnDate;
+
+        document.getElementById("detailLocation").innerText = location;
+
+        document.getElementById("detailAmount").innerText = amount;
+
+
+        document.getElementById("bookingModal").style.display = "flex";
+
+    }
+
+
+    /* =========================
+       CLOSE MODAL
+    ========================= */
+
+    function closeModal() {
+
+        document.getElementById("bookingModal").style.display = "none";
+
+    }
+
+
+    /* =========================
+       CLOSE MODAL WHEN CLICKING
+       OUTSIDE THE BOX
+    ========================= */
+
+    window.onclick = function(event) {
+
+        const modal =
+            document.getElementById("bookingModal");
+
+
+        if (event.target === modal) {
+
+            closeModal();
+
         }
 
-        return response.json();
-
-    })
-    .then(bookings => {
-
-        console.log("Admin bookings received:", bookings);
-
-        const bookingTable =
-            document.getElementById("bookingTable");
-
-        bookingTable.innerHTML = "";
-
-        /* UPDATE TOTAL BOOKINGS */
-
-        document.getElementById("totalBookings").innerText =
-            bookings.length;
+    };
 
 
-        /* CURRENT BACKEND BOOKINGS ARE CONFIRMED */
+    /* =========================
+       LOAD REAL BOOKINGS
+    ========================= */
 
-        document.getElementById("confirmedBookings").innerText =
-            bookings.length;
+    fetch("http://localhost:8080/api/bookings")
+        .then(response => {
 
-        document.getElementById("pendingBookings").innerText = 0;
+            if (!response.ok) {
 
-        document.getElementById("cancelledBookings").innerText = 0;
+                throw new Error(
+                    "Failed to load bookings"
+                );
+
+            }
+
+            return response.json();
+
+        })
+        .then(bookings => {
+
+            console.log(
+                "Admin bookings received:",
+                bookings
+            );
 
 
-        /* CREATE BOOKING ROWS */
-
-        bookings.forEach(booking => {
-
-            const row = document.createElement("tr");
-
-            row.innerHTML = `
-
-                <td>
-                    <span class="booking-id">
-                        DX${String(booking.id).padStart(4, "0")}
-                    </span>
-                </td>
+            const bookingTable =
+                document.getElementById("bookingTable");
 
 
-                <td>
+            bookingTable.innerHTML = "";
 
-                    <div class="customer">
 
-                        <div class="customer-avatar">
-                            👤
-                        </div>
+            /* =========================
+               UPDATE BOOKING STATISTICS
+            ========================= */
 
-                        <div>
+            document.getElementById(
+                "totalBookings"
+            ).innerText = bookings.length;
 
-                            <div class="customer-name">
-                                ${booking.fullName}
+
+            document.getElementById(
+                "confirmedBookings"
+            ).innerText = bookings.length;
+
+
+            document.getElementById(
+                "pendingBookings"
+            ).innerText = 0;
+
+
+            document.getElementById(
+                "cancelledBookings"
+            ).innerText = 0;
+
+
+            /* =========================
+               CREATE BOOKING ROWS
+            ========================= */
+
+            bookings.forEach(booking => {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        <span class="booking-id">
+                            DX${String(booking.id).padStart(4, "0")}
+                        </span>
+                    </td>
+
+
+                    <td>
+
+                        <div class="customer">
+
+                            <div class="customer-avatar">
+                                👤
                             </div>
 
-                            <div class="customer-email">
-                                ${booking.email}
+                            <div>
+
+                                <div class="customer-name">
+                                    ${booking.fullName}
+                                </div>
+
+                                <div class="customer-email">
+                                    ${booking.email}
+                                </div>
+
                             </div>
 
                         </div>
 
-                    </div>
-
-                </td>
+                    </td>
 
 
-                <td>
+                    <td>
 
-                    <div class="car-name" id="car-${booking.id}">
-                        Loading...
-                    </div>
+                        <div
+                            class="car-name"
+                            id="car-${booking.id}"
+                        >
+                            Loading...
+                        </div>
 
-                    <div class="car-type">
-                        DriveX Rental
-                    </div>
+                        <div class="car-type">
+                            DriveX Rental
+                        </div>
 
-                </td>
-
-
-                <td>
-
-                    <div class="date">
-                        ${booking.pickupDate}
-                    </div>
-
-                    <div class="location">
-                        📍 ${booking.pickupLocation}
-                    </div>
-
-                </td>
+                    </td>
 
 
-                <td>
+                    <td>
 
-                    <div class="date">
-                        ${booking.returnDate}
-                    </div>
+                        <div class="date">
+                            ${booking.pickupDate}
+                        </div>
 
-                </td>
+                        <div class="location">
+                            📍 ${booking.pickupLocation}
+                        </div>
 
-
-                <td>
-
-                    <div class="amount">
-                        ₹${booking.totalPrice.toLocaleString("en-IN")}
-                    </div>
-
-                </td>
+                    </td>
 
 
-                <td>
+                    <td>
 
-                    <span class="status confirmed">
-                        Confirmed
-                    </span>
+                        <div class="date">
+                            ${booking.returnDate}
+                        </div>
 
-                </td>
-
-
-                <td>
-
-                    <button
-                        class="action-btn"
-                        onclick="viewBooking(
-                            'DX${String(booking.id).padStart(4, "0")}',
-                            '${booking.fullName}',
-                            '${booking.email}',
-                            document.getElementById('car-${booking.id}').innerText,
-                            '${booking.pickupDate}',
-                            '${booking.returnDate}',
-                            '${booking.pickupLocation}',
-                            '₹${booking.totalPrice.toLocaleString("en-IN")}'
-                        )">
-
-                        👁 View
-
-                    </button>
-
-                </td>
-
-            `;
-
-            bookingTable.appendChild(row);
+                    </td>
 
 
-            /* LOAD CAR NAME */
+                    <td>
 
-            fetch(
-                "http://localhost:8080/api/cars/" +
-                booking.carId
-            )
-                .then(response => response.json())
+                        <div class="amount">
+                            ₹${booking.totalPrice.toLocaleString("en-IN")}
+                        </div>
 
-                .then(car => {
+                    </td>
 
+
+                    <td>
+
+                        <span class="status confirmed">
+                            Confirmed
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="action-btn"
+                            onclick="viewBooking(
+                                'DX${String(booking.id).padStart(4, "0")}',
+                                '${booking.fullName}',
+                                '${booking.email}',
+                                document.getElementById('car-${booking.id}').innerText,
+                                '${booking.pickupDate}',
+                                '${booking.returnDate}',
+                                '${booking.pickupLocation}',
+                                '₹${booking.totalPrice.toLocaleString("en-IN")}'
+                            )"
+                        >
+
+                            👁 View
+
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                bookingTable.appendChild(row);
+
+
+                /* =========================
+                   LOAD CAR NAME
+                ========================= */
+
+                const carElement =
                     document.getElementById(
                         "car-" + booking.id
-                    ).innerText = car.name;
-
-                })
-
-                .catch(error => {
-
-                    console.error(
-                        "Error loading car:",
-                        error
                     );
 
-                });
+
+                /*
+                   OLD BOOKINGS WITH carId = 0
+                   DO NOT CALL /api/cars/0
+                */
+
+                if (!booking.carId || booking.carId <= 0) {
+
+                    carElement.innerText =
+                        "Unknown Car";
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   FETCH CAR FROM BACKEND
+                ========================= */
+
+                fetch(
+                    "http://localhost:8080/api/cars/" +
+                    booking.carId
+                )
+                    .then(response => {
+
+                        /*
+                           Backend returned no car
+                        */
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Car not found"
+                            );
+
+                        }
+
+
+                        /*
+                           Check that response
+                           actually contains data
+                        */
+
+                        const contentType =
+                            response.headers.get(
+                                "content-type"
+                            );
+
+
+                        if (
+                            !contentType ||
+                            !contentType.includes(
+                                "application/json"
+                            )
+                        ) {
+
+                            throw new Error(
+                                "Invalid car response"
+                            );
+
+                        }
+
+
+                        return response.json();
+
+                    })
+                    .then(car => {
+
+                        if (
+                            !car ||
+                            !car.name
+                        ) {
+
+                            carElement.innerText =
+                                "Unknown Car";
+
+                            return;
+
+                        }
+
+
+                        carElement.innerText =
+                            car.name;
+
+                    })
+                    .catch(error => {
+
+                        console.error(
+                            "Error loading car:",
+                            error
+                        );
+
+
+                        carElement.innerText =
+                            "Unknown Car";
+
+                    });
+
+            });
+
+        })
+        .catch(error => {
+
+            console.error(
+                "Error loading bookings:",
+                error
+            );
 
         });
 
-    })
-    .catch(error => {
 
-        console.error(
-            "Error loading bookings:",
-            error
-        );
+</script>
+```
 
-    });
-
-
-    </script>
 
 
 </body>
