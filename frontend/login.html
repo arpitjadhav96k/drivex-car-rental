@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | DriveX</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* ================================
+           LOGIN PAGE
+        ================================= */
+
+        .login-page {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+
+            background:
+                radial-gradient(circle at top left,
+                rgba(37, 99, 235, 0.15),
+                transparent 35%),
+                radial-gradient(circle at bottom right,
+                rgba(14, 165, 233, 0.12),
+                transparent 35%),
+                #f8fafc;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1050px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15);
+        }
+
+        /* ================================
+           LEFT SIDE
+        ================================= */
+
+        .login-left {
+            position: relative;
+            padding: 55px 45px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a,
+                    #2563eb
+                );
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: "";
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            top: -120px;
+            right: -100px;
+        }
+
+        .login-left::after {
+            content: "";
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            bottom: -100px;
+            left: -80px;
+        }
+
+        .login-car {
+            font-size: 90px;
+            margin-bottom: 25px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-left h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-left p {
+            font-size: 17px;
+            line-height: 1.7;
+
+            color: #dbeafe;
+
+            max-width: 420px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-benefits {
+            margin-top: 30px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+            font-size: 15px;
+            color: #e0f2fe;
+        }
+
+        .benefit span {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            border-radius: 50%;
+        }
+
+        /* ================================
+           RIGHT SIDE
+        ================================= */
+
+        .login-right {
+            padding: 55px 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-heading {
+            margin-bottom: 35px;
+        }
+
+        .login-heading h2 {
+            font-size: 32px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .login-heading p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* ================================
+           FORM
+        ================================= */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            color: #334155;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 18px;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 14px 15px 14px 45px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.3s;
+
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        /* ================================
+           OPTIONS
+        ================================= */
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin: 5px 0 25px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .remember input {
+            accent-color: #2563eb;
+        }
+
+        .forgot-password {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* ================================
+           LOGIN BUTTON
+        ================================= */
+
+        .login-btn {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(37, 99, 235, 0.35);
+        }
+
+        /* ================================
+           DIVIDER
+        ================================= */
+
+        .divider {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            margin: 28px 0;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #e2e8f0;
+        }
+
+        /* ================================
+           REGISTER
+        ================================= */
+
+        .register-text {
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================================
+           SUCCESS MESSAGE
+        ================================= */
+
+        .login-message {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            text-align: center;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+
+            .login-left {
+                padding: 40px 30px;
+            }
+
+            .login-left h1 {
+                font-size: 32px;
+            }
+
+            .login-car {
+                font-size: 65px;
+            }
+
+            .login-right {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .login-page {
+                padding: 30px 15px;
+            }
+
+            .login-left {
+                display: none;
+            }
+
+            .login-right {
+                padding: 35px 25px;
+            }
+
+            .login-heading h2 {
+                font-size: 27px;
+            }
+
+            .login-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🚘 DriveX
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="cars.html">Cars</a>
+
+            <a href="#">About</a>
+
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="nav-buttons">
+
+            <a href="login.html" class="login-btn-nav">
+                Login
+            </a>
+
+            <a href="register.html" class="signup-btn-nav">
+                Sign Up
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================================
+         LOGIN SECTION
+    ================================= -->
+
+    <section class="login-page">
+
+        <div class="login-container">
+
+
+            <!-- LEFT SIDE -->
+
+            <div class="login-left">
+
+                <div class="login-car">
+                    🚘
+                </div>
+
+                <h1>
+                    Welcome Back!
+                </h1>
+
+                <p>
+                    Login to your DriveX account and
+                    continue your journey with the perfect
+                    car for your next adventure.
+                </p>
+
+                <div class="login-benefits">
+
+                    <div class="benefit">
+                        <span>✓</span>
+                        Easy and fast car booking
+                    </div>
+
+                    <div class="benefit">
+                        <span>✓</span>
+                        Premium cars at affordable prices
+                    </div>
+
+                    <div class="benefit">
+                        <span>✓</span>
+                        Manage all your bookings
+                    </div>
+
+                    <div class="benefit">
+                        <span>✓</span>
+                        Secure and reliable service
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="login-right">
+
+                <div class="login-heading">
+
+                    <h2>
+                        Login to DriveX
+                    </h2>
+
+                    <p>
+                        Enter your details to access your account.
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+
+                <form id="loginForm">
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="login-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+                        <a href="#" class="forgot-password">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+                        Login →
+                    </button>
+
+
+                    <!-- DIVIDER -->
+
+                    <div class="divider">
+                        OR
+                    </div>
+
+
+                    <!-- REGISTER -->
+
+                    <div class="register-text">
+
+                        Don't have an account?
+
+                        <a href="register.html">
+                            Create Account
+                        </a>
+
+                    </div>
+
+
+                    <!-- SUCCESS MESSAGE -->
+
+                    <div
+                        class="login-message"
+                        id="loginMessage"
+                    >
+                        Login successful! Welcome to DriveX 🚘
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>🚘 DriveX</h3>
+
+            <p>
+                Your journey. Our cars.
+            </p>
+
+            <p>
+                © 2026 DriveX. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+        alert("Please enter email and password.");
+        return;
+    }
+
+    try {
+
+        const response = await fetch("http://localhost:8080/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        if (!response.ok) {
+            alert("Invalid email or password.");
+            return;
+        }
+
+        const user = await response.json();
+
+        console.log("Logged in user:", user);
+
+        // Save login information
+        localStorage.setItem("user", JSON.stringify({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role
+        }));
+
+        // Role-based redirect
+        if (user.role === "ADMIN") {
+            window.location.href = "admin/dashboard.html";
+        } else {
+            window.location.href = "index.html";
+        }
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+        alert("Cannot connect to server. Make sure Spring Boot is running.");
+
+    }
+
+});
+    </script>
+
+</body>
+</html>

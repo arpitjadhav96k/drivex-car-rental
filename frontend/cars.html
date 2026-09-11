@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>DriveX - Available Cars</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ===============================
+           CARS PAGE
+        =============================== */
+
+        .cars-page {
+            padding: 70px 8%;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .cars-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cars-header span {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .cars-header h1 {
+            font-size: 48px;
+            margin: 12px 0;
+            color: #0f172a;
+        }
+
+        .cars-header p {
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        /* ===============================
+           CAR GRID
+        =============================== */
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* ===============================
+           CAR CARD
+        =============================== */
+
+        .car-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 20px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        /* CAR IMAGE */
+
+        .car-image {
+            height: 230px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe
+                );
+
+            font-size: 110px;
+        }
+
+        /* CARD CONTENT */
+
+        .car-info {
+            padding: 25px;
+        }
+
+        .car-info h2 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .car-type {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* FEATURES */
+
+        .car-features {
+            display: flex;
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+        .car-features span {
+            background: #f1f5f9;
+
+            padding: 6px 9px;
+
+            border-radius: 6px;
+        }
+
+        /* PRICE */
+
+        .car-bottom {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .car-price {
+            color: #2563eb;
+
+            font-size: 22px;
+
+            font-weight: 800;
+        }
+
+        .car-price small {
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            font-weight: normal;
+        }
+
+        /* BUTTON */
+
+        .details-btn {
+            background: #2563eb;
+
+            color: white;
+
+            padding: 11px 17px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .details-btn:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+        }
+
+        /* ===============================
+           BACK BUTTON
+        =============================== */
+
+        .back-home {
+            display: inline-block;
+
+            margin-bottom: 30px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            color: #2563eb;
+        }
+
+        /* ===============================
+           RESPONSIVE
+        =============================== */
+
+        @media (max-width: 1000px) {
+
+            .cars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cars-header h1 {
+                font-size: 38px;
+            }
+
+            .cars-page {
+                padding: 50px 20px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ===============================
+         NAVBAR
+    =============================== -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">🚘</span>
+
+            Drive<span class="logo-highlight">X</span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="cars.html" class="active">
+                Cars
+            </a>
+
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="nav-buttons">
+
+            <a href="login.html"
+                class="login-btn">
+
+                Login
+
+            </a>
+
+            <a href="register.html"
+                class="signup-btn">
+
+                Sign Up
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ===============================
+         CARS SECTION
+    =============================== -->
+
+    <main class="cars-page">
+
+
+        <a href="index.html"
+            class="back-home">
+
+            ← Back to Home
+
+        </a>
+
+
+        <div class="cars-header">
+
+            <span>
+                OUR COLLECTION
+            </span>
+
+            <h1>
+                Choose Your Perfect Car
+            </h1>
+
+            <p>
+                Find the perfect car for your next journey.
+            </p>
+
+        </div>
+
+
+        <!-- ===============================
+             CAR GRID
+        =============================== -->
+
+        <div class="cars-grid">
+
+
+            <!-- ===============================
+                 TOYOTA CAMRY
+            =============================== -->
+
+            <div class="car-card">
+
+                <div class="car-image">
+                    🚙
+                </div>
+
+
+                <div class="car-info">
+
+                    <h2>
+                        Toyota Camry
+                    </h2>
+
+                    <p class="car-type">
+                        Premium Sedan
+                    </p>
+
+
+                    <div class="car-features">
+
+                        <span>
+                            👤 5 Seats
+                        </span>
+
+                        <span>
+                            ⚙️ Automatic
+                        </span>
+
+                    </div>
+
+
+                    <div class="car-bottom">
+
+                        <div class="car-price">
+
+                            ₹3,000
+
+                            <small>
+                                / day
+                            </small>
+
+                        </div>
+
+
+                        <a href="car-details.html?id=1"
+                            class="details-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 HONDA CITY
+            =============================== -->
+
+            <div class="car-card">
+
+                <div class="car-image">
+                    🚗
+                </div>
+
+
+                <div class="car-info">
+
+                    <h2>
+                        Honda City
+                    </h2>
+
+                    <p class="car-type">
+                        Comfortable Sedan
+                    </p>
+
+
+                    <div class="car-features">
+
+                        <span>
+                            👤 5 Seats
+                        </span>
+
+                        <span>
+                            ⚙️ Automatic
+                        </span>
+
+                    </div>
+
+
+                    <div class="car-bottom">
+
+                        <div class="car-price">
+
+                            ₹2,000
+
+                            <small>
+                                / day
+                            </small>
+
+                        </div>
+
+
+                        <a href="car-details.html?id=2" 
+                           class="details-btn">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 BMW 3 SERIES
+            =============================== -->
+
+            <div class="car-card">
+
+                <div class="car-image">
+                    🏎️
+                </div>
+
+
+                <div class="car-info">
+
+                    <h2>
+                        BMW 3 Series
+                    </h2>
+
+                    <p class="car-type">
+                        Luxury Sedan
+                    </p>
+
+
+                    <div class="car-features">
+
+                        <span>
+                            👤 5 Seats
+                        </span>
+
+                        <span>
+                            ⚙️ Automatic
+                        </span>
+
+                    </div>
+
+
+                    <div class="car-bottom">
+
+                        <div class="car-price">
+
+                            ₹5,000
+
+                            <small>
+                                / day
+                            </small>
+
+                        </div>
+
+
+                        <a href="car-details.html?id=3" 
+                            class="details-btn">
+
+                            View Details
+                      
+                          </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ===============================
+         FOOTER
+    =============================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            Drive<span>X</span>
+
+        </div>
+
+
+        <p>
+            © 2026 DriveX. All rights reserved.
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+            <a href="#">
+                Support
+            </a>
+
+        </div>
+
+    </footer>
+    <script>
+
+// =====================================
+// DRIVEX - CARS PAGE JAVASCRIPT
+// =====================================
+
+console.log("DriveX Cars Page Loaded");
+
+
+// =====================================
+// CAR DETAILS BUTTONS
+// =====================================
+
+const detailsButtons =
+    document.querySelectorAll(".details-btn");
+
+
+// =====================================
+// CAR IDs
+// =====================================
+
+const carIds = [1, 2, 3];
+
+
+// =====================================
+// SET CORRECT CAR DETAILS URL
+// =====================================
+
+detailsButtons.forEach((button, index) => {
+
+    const carId = carIds[index];
+
+    if (carId) {
+
+        button.href =
+            "car-details.html?id=" + carId;
+
+        console.log(
+            "Car " + (index + 1) +
+            " Details URL:",
+            button.href
+        );
+
+    }
+
+});
+
+
+// =====================================
+// DEBUG CLICK
+// =====================================
+
+detailsButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function() {
+
+            console.log(
+                "Opening:",
+                this.href
+            );
+
+        }
+    );
+
+});
+
+
+</script>
+
+ </body>
+
+ </html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>DriveX - Car Details</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        /* =================================
+           CAR DETAILS PAGE
+        ================================= */
+
+        .details-page {
+            min-height: 100vh;
+
+            padding: 60px 8% 90px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eff6ff
+                );
+        }
+
+
+        /* =================================
+           BACK BUTTON
+        ================================= */
+
+        .back-link {
+            display: inline-block;
+
+            margin-bottom: 35px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: #2563eb;
+        }
+
+
+        /* =================================
+           DETAILS CONTAINER
+        ================================= */
+
+        .details-container {
+
+            display: grid;
+
+            grid-template-columns:
+                1.1fr 0.9fr;
+
+            gap: 50px;
+
+            align-items: center;
+
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+
+        /* =================================
+           CAR IMAGE AREA
+        ================================= */
+
+        .details-image-box {
+
+            min-height: 500px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            border-radius: 25px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #dbeafe,
+                    #eff6ff 60%,
+                    #ffffff
+                );
+
+            border: 1px solid #dbeafe;
+
+            overflow: hidden;
+        }
+
+
+        .details-circle {
+
+            width: 390px;
+
+            height: 390px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #dbeafe
+                );
+
+            box-shadow:
+                0 30px 60px
+                rgba(37, 99, 235, 0.15);
+
+            border: 5px solid white;
+        }
+
+
+        .details-car {
+
+            font-size: 180px;
+
+            filter:
+                drop-shadow(
+                    0 25px 15px
+                    rgba(0, 0, 0, 0.18)
+                );
+
+            transform: rotate(-3deg);
+
+        }
+
+
+        /* =================================
+           SMALL FLOATING LABEL
+        ================================= */
+
+        .popular-badge {
+
+            position: absolute;
+
+            top: 25px;
+
+            left: 25px;
+
+            padding: 9px 15px;
+
+            border-radius: 30px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* =================================
+           CAR INFORMATION
+        ================================= */
+
+        .details-info {
+
+            padding: 10px;
+        }
+
+
+        .details-category {
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .details-info h1 {
+
+            font-size: 52px;
+
+            line-height: 1.05;
+
+            color: #0f172a;
+
+            margin: 12px 0 15px;
+
+            letter-spacing: -2px;
+        }
+
+
+        .details-description {
+
+            color: #64748b;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+
+            max-width: 550px;
+        }
+
+
+        /* =================================
+           RATING
+        ================================= */
+
+        .rating {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .rating-stars {
+
+            color: #f59e0b;
+
+            font-size: 18px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .rating span {
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* =================================
+           FEATURES
+        ================================= */
+
+        .details-features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .detail-feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 15px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+        }
+
+
+        .feature-symbol {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eff6ff;
+
+            border-radius: 8px;
+
+            font-size: 18px;
+        }
+
+
+        .detail-feature small {
+
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+
+        .detail-feature strong {
+
+            color: #334155;
+
+            font-size: 13px;
+        }
+
+
+        /* =================================
+           PRICE
+        ================================= */
+
+        .booking-price {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 22px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.06);
+        }
+
+
+        .price-label {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            display: block;
+        }
+
+
+        .price-value {
+
+            color: #2563eb;
+
+            font-size: 30px;
+
+            font-weight: 800;
+        }
+
+
+        .price-value small {
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            font-weight: normal;
+        }
+
+
+        /* =================================
+           BOOK BUTTON
+        ================================= */
+
+        .book-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 15px 25px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+
+            white-space: nowrap;
+        }
+
+
+        .book-btn:hover {
+
+            background: #1d4ed8;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(37, 99, 235, 0.25);
+        }
+
+
+        /* =================================
+           EXTRA INFORMATION
+        ================================= */
+
+        .details-extra {
+
+            max-width: 1200px;
+
+            margin: 60px auto 0;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .extra-card {
+
+            padding: 25px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 14px;
+        }
+
+
+        .extra-card h3 {
+
+            color: #0f172a;
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .extra-card p {
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 950px) {
+
+            .details-container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .details-image-box {
+
+                min-height: 400px;
+
+            }
+
+            .details-info {
+
+                text-align: center;
+
+            }
+
+            .details-description {
+
+                margin-left: auto;
+
+                margin-right: auto;
+
+            }
+
+            .rating {
+
+                justify-content: center;
+
+            }
+
+            .booking-price {
+
+                text-align: left;
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .details-page {
+
+                padding: 40px 20px 70px;
+
+            }
+
+            .details-info h1 {
+
+                font-size: 40px;
+
+            }
+
+            .details-circle {
+
+                width: 280px;
+
+                height: 280px;
+
+            }
+
+            .details-car {
+
+                font-size: 125px;
+
+            }
+
+            .details-features {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .booking-price {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+            .book-btn {
+
+                width: 100%;
+
+            }
+
+            .details-extra {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         NAVBAR
+    ================================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                🚘
+            </span>
+
+            Drive<span class="logo-highlight">X</span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="nav-buttons">
+
+            <a href="login.html"
+                class="login-btn">
+
+                Login
+
+            </a>
+
+            <a href="register.html"
+                class="signup-btn">
+
+                Sign Up
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================
+         DETAILS PAGE
+    ================================= -->
+
+    <main class="details-page">
+
+
+        <a href="cars.html"
+            class="back-link">
+
+            ← Back to Cars
+
+        </a>
+
+
+        <div class="details-container">
+
+
+            <!-- =================================
+                 CAR IMAGE
+            ================================= -->
+
+            <div class="details-image-box">
+
+                <div class="popular-badge">
+
+                    ⭐ POPULAR CHOICE
+
+                </div>
+
+
+                <div class="details-circle">
+
+                    <div class="details-car">
+
+                        🚙
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 CAR INFORMATION
+            ================================= -->
+
+            <div class="details-info">
+
+
+                <span class="details-category">
+
+                    PREMIUM SEDAN
+
+                </span>
+
+
+                  <h1 id="carName">
+
+                      TEST-123
+
+                   </h1>
+
+
+                <p class="details-description">
+
+                    Experience comfort, performance and
+                    style with the Toyota Camry. Perfect
+                    for city drives, business trips and
+                    long journeys.
+
+                </p>
+
+
+                <!-- RATING -->
+
+                <div class="rating">
+
+                    <div class="rating-stars">
+
+                        ★★★★★
+
+                    </div>
+
+                    <span>
+
+                        4.9 (128 reviews)
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- FEATURES -->
+
+                <div class="details-features">
+
+
+                    <div class="detail-feature">
+
+                        <div class="feature-symbol">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Seats
+                            </small>
+
+                            <strong>
+                                5 People
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-feature">
+
+                        <div class="feature-symbol">
+                            ⚙️
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Transmission
+                            </small>
+
+                            <strong>
+                                Automatic
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-feature">
+
+                        <div class="feature-symbol">
+                            ⛽
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Fuel
+                            </small>
+
+                            <strong>
+                                Petrol
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-feature">
+
+                        <div class="feature-symbol">
+                            ❄️
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Climate
+                            </small>
+
+                            <strong>
+                                AC
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     PRICE + BOOKING
+                ================================= -->
+
+                <div class="booking-price">
+
+
+                    <div>
+
+                        <span class="price-label">
+
+                            Rental Price
+
+                        </span>
+
+                        <div class="price-value">
+
+                           ₹<span id="carPrice">0</span>
+
+                            <small>
+                             
+                                / day
+
+                         </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <a href="booking.html"
+                        class="book-btn"
+                        id="bookButton">
+
+                        Book This Car →
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             EXTRA INFORMATION
+        ================================= -->
+
+        <div class="details-extra">
+
+
+            <div class="extra-card">
+
+                <h3>
+                    🛡️ Fully Insured
+                </h3>
+
+                <p>
+                    Every rental comes with basic
+                    insurance coverage for a safe
+                    and worry-free journey.
+                </p>
+
+            </div>
+
+
+            <div class="extra-card">
+
+                <h3>
+                    🔧 Well Maintained
+                </h3>
+
+                <p>
+                    Our cars are regularly serviced
+                    and inspected before every rental.
+                </p>
+
+            </div>
+
+
+            <div class="extra-card">
+
+                <h3>
+                    📍 Flexible Pickup
+                </h3>
+
+                <p>
+                    Choose a convenient pickup location
+                    and start your journey easily.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            Drive<span>X</span>
+
+        </div>
+
+
+        <p>
+
+            © 2026 DriveX. All rights reserved.
+
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+            <a href="#">
+                Support
+            </a>
+
+        </div>
+
+    </footer>
+    <script>
+
+const carId = new URLSearchParams(window.location.search).get("id");
+
+const carNameElement = document.getElementById("carName");
+const carPriceElement = document.getElementById("carPrice");
+const bookButton = document.getElementById("bookButton");
+
+console.log("URL:", window.location.href);
+console.log("Car ID:", carId);
+
+if (!carId) {
+
+    carNameElement.textContent = "Car ID Missing";
+
+} else {
+
+    fetch("http://localhost:8080/api/cars/" + carId)
+
+        .then(response => {
+
+            console.log("HTTP Status:", response.status);
+
+            if (!response.ok) {
+                throw new Error("Server returned HTTP " + response.status);
+            }
+
+            return response.json();
+        })
+
+        .then(car => {
+
+            console.log("FULL CAR OBJECT:", car);
+
+            // Check that backend actually returned a car
+            if (!car) {
+                throw new Error("No car data returned from backend");
+            }
+
+            // Set car name
+            if (carNameElement) {
+                carNameElement.textContent = car.name;
+            } else {
+                console.error("carName element not found");
+            }
+
+            // Set price
+            if (carPriceElement) {
+                carPriceElement.textContent =
+                    Number(car.pricePerDay).toLocaleString("en-IN");
+            } else {
+                console.error("carPrice element not found");
+            }
+
+            // Set booking link
+            if (bookButton) {
+                bookButton.href =
+                    "booking.html?id=" + car.id;
+            } else {
+                console.error("bookButton element not found");
+            }
+
+            console.log("SUCCESS:");
+            console.log("Name:", car.name);
+            console.log("Price:", car.pricePerDay);
+            console.log("Booking:", bookButton ? bookButton.href : "button missing");
+
+        })
+
+        .catch(error => {
+
+            console.error("CAR DETAILS ERROR:", error);
+
+            // IMPORTANT:
+            // Do not hide the actual error behind "Unable to load car"
+            carNameElement.textContent = "Error loading car";
+
+        });
+
+}
+
+</script>
+</body>
+</html>

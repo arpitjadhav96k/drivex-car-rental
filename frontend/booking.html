@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>DriveX - Book Your Car</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =====================================
+           BOOKING PAGE
+        ===================================== */
+
+        .booking-page {
+
+            min-height: 100vh;
+
+            padding: 60px 8% 90px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eff6ff
+                );
+        }
+
+
+        /* =====================================
+           BACK BUTTON
+        ===================================== */
+
+        .back-link {
+
+            display: inline-block;
+
+            margin-bottom: 35px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        /* =====================================
+           PAGE HEADER
+        ===================================== */
+
+        .booking-header {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .booking-header span {
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+
+        .booking-header h1 {
+
+            color: #0f172a;
+
+            font-size: 45px;
+
+            margin: 10px 0;
+        }
+
+
+        .booking-header p {
+
+            color: #64748b;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================
+           MAIN BOOKING CONTAINER
+        ===================================== */
+
+        .booking-container {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 30px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================
+           CAR SUMMARY
+        ===================================== */
+
+        .car-summary {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15, 23, 42, 0.06);
+        }
+
+
+        .summary-image {
+
+            height: 210px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe
+                );
+
+            font-size: 120px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .summary-category {
+
+            color: #2563eb;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .car-summary h2 {
+
+            color: #0f172a;
+
+            font-size: 28px;
+
+            margin: 8px 0;
+        }
+
+
+        .summary-rating {
+
+            color: #f59e0b;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================
+           SUMMARY FEATURES
+        ===================================== */
+
+        .summary-features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .summary-feature {
+
+            padding: 12px;
+
+            background: #f8fafc;
+
+            border-radius: 8px;
+
+            color: #475569;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           PRICE
+        ===================================== */
+
+        .summary-price {
+
+            padding-top: 20px;
+
+            border-top: 1px solid #e2e8f0;
+
+        }
+
+
+        .summary-price span {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        .summary-price strong {
+
+            display: block;
+
+            color: #2563eb;
+
+            font-size: 30px;
+
+            margin-top: 4px;
+        }
+
+
+        .summary-price small {
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            font-weight: normal;
+        }
+
+
+        /* =====================================
+           BOOKING FORM
+        ===================================== */
+
+        .booking-form {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15, 23, 42, 0.06);
+        }
+
+
+        .booking-form h2 {
+
+            color: #0f172a;
+
+            font-size: 25px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================
+           FORM ROW
+        ===================================== */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #334155;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            color: #334155;
+
+            background: white;
+
+            transition: 0.3s;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.1);
+        }
+
+
+        /* =====================================
+           TERMS
+        ===================================== */
+
+        .terms {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin: 5px 0 25px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .terms input {
+
+            margin-top: 3px;
+
+        }
+
+
+        /* =====================================
+           TOTAL
+        ===================================== */
+
+        .total-box {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+
+            border-radius: 10px;
+
+            background: #eff6ff;
+
+            border: 1px solid #dbeafe;
+        }
+
+
+        .total-box span {
+
+            color: #475569;
+
+            font-weight: 600;
+
+            font-size: 14px;
+        }
+
+
+        .total-box strong {
+
+            color: #2563eb;
+
+            font-size: 24px;
+        }
+
+
+        /* =====================================
+           CONFIRM BUTTON
+        ===================================== */
+
+        .confirm-btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .confirm-btn:hover {
+
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(37, 99, 235, 0.25);
+        }
+
+
+        /* =====================================
+           SUCCESS MESSAGE
+        ===================================== */
+
+        .success-message {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            background: #ecfdf5;
+
+            border: 1px solid #a7f3d0;
+
+            color: #047857;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 850px) {
+
+            .booking-container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .booking-page {
+
+                padding: 40px 20px 70px;
+
+            }
+
+            .booking-header h1 {
+
+                font-size: 36px;
+
+            }
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+
+            }
+
+            .booking-form {
+
+                padding: 25px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+    ===================================== -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                🚘
+            </span>
+
+            Drive<span class="logo-highlight">X</span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="nav-buttons">
+
+            <a href="login.html"
+                class="login-btn">
+
+                Login
+
+            </a>
+
+            <a href="register.html"
+                class="signup-btn">
+
+                Sign Up
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================
+         BOOKING PAGE
+    ===================================== -->
+
+    <main class="booking-page">
+
+
+        <a href="car-details.html"
+            class="back-link">
+
+            ← Back to Car Details
+
+        </a>
+
+
+        <!-- HEADER -->
+
+        <div class="booking-header">
+
+            <span>
+                RESERVE YOUR RIDE
+            </span>
+
+            <h1>
+                Book Your Car
+            </h1>
+
+            <p>
+                Complete the form below to reserve
+                your car.
+            </p>
+
+        </div>
+
+
+
+        <!-- =====================================
+             BOOKING CONTAINER
+        ===================================== -->
+
+        <div class="booking-container">
+
+
+            <!-- =================================
+                 CAR SUMMARY
+            ================================= -->
+
+            <div class="car-summary">
+
+
+                <div class="summary-image">
+
+                    🚙
+
+                </div>
+
+
+                <span class="summary-category">
+
+                    PREMIUM SEDAN
+
+                </span>
+
+
+              <h2 id="carName">
+                   Loading...
+                </h2>
+
+
+                <div class="summary-rating">
+
+                    ★★★★★
+                    <span style="color:#64748b;">
+                        4.9 (128 reviews)
+                    </span>
+
+                </div>
+
+
+                <!-- FEATURES -->
+
+                <div class="summary-features">
+
+
+                    <div class="summary-feature">
+                        👤 5 Seats
+                    </div>
+
+
+                    <div class="summary-feature">
+                        ⚙️ Automatic
+                    </div>
+
+
+                    <div class="summary-feature">
+                        ⛽ Petrol
+                    </div>
+
+
+                    <div class="summary-feature">
+                        ❄️ AC
+                    </div>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="summary-price">
+
+                    <span>
+                        Rental price
+                    </span>
+
+                    <strong>
+
+                        ₹3,000
+
+                        <small>
+                            / day
+                        </small>
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 BOOKING FORM
+            ================================= -->
+
+            <div class="booking-form">
+
+
+                <h2>
+                    Booking Information
+                </h2>
+
+
+                <form id="bookingForm">
+
+
+                    <!-- NAME + PHONE -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter phone number"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- DATES -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="pickup">
+                                Pickup Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="pickup"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="return">
+                                Return Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="return"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Pickup Location
+                        </label>
+
+                        <select id="location" required>
+
+                            <option value="">
+                                Select pickup location
+                            </option>
+
+                            <option>
+                                Pune, Maharashtra
+                            </option>
+
+                            <option>
+                                Mumbai, Maharashtra
+                            </option>
+
+                            <option>
+                                Nashik, Maharashtra
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            required>
+
+                        <span>
+
+                            I agree to the rental terms
+                            and conditions and confirm
+                            that the information provided
+                            is correct.
+
+                        </span>
+
+                    </label>
+
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-box">
+
+                        <span>
+                            Estimated Total
+                        </span>
+
+                        <strong id="totalPrice">
+                            ₹3,000
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="confirm-btn">
+
+                        Confirm Booking →
+
+                    </button>
+
+
+                    <!-- SUCCESS -->
+
+                    <div
+                        id="successMessage"
+                        class="success-message">
+
+                        ✅ Booking confirmed successfully!
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            Drive<span>X</span>
+
+        </div>
+
+
+        <p>
+
+            © 2026 DriveX. All rights reserved.
+
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+            <a href="#">
+                Support
+            </a>
+
+        </div>
+
+    </footer>
+
+
+
+   
+<script>
+
+
+
+const bookingForm = document.getElementById("bookingForm");
+
+const pickup = document.getElementById("pickup");
+
+const returnDate = document.getElementById("return");
+
+const totalPrice = document.getElementById("totalPrice");
+
+const successMessage = document.getElementById("successMessage");
+
+const carName = document.getElementById("carName");
+
+
+// =====================================
+// GET CAR ID FROM URL
+// Example:
+// booking.html?id=1
+// =====================================
+
+const carId =
+    new URLSearchParams(window.location.search).get("id");
+
+console.log("Booking Car ID:", carId);
+
+
+// =====================================
+// DEFAULT PRICE
+// =====================================
+
+let pricePerDay = 3000;
+
+
+// =====================================
+// LOAD CAR FROM BACKEND
+// =====================================
+
+if (!carId) {
+
+    console.error("Car ID is missing from URL");
+
+    carName.textContent = "Car ID Missing";
+
+} else {
+
+    console.log(
+        "Fetching:",
+        "http://localhost:8080/api/cars/" + carId
+    );
+
+    fetch("http://localhost:8080/api/cars/" + carId)
+
+        .then(response => {
+
+            console.log(
+                "Booking response status:",
+                response.status
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP Error: " + response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(car => {
+
+            console.log(
+                "Booking car loaded:",
+                car
+            );
+
+
+            // =====================================
+            // SET CAR NAME
+            // =====================================
+
+            carName.textContent = car.name;
+
+
+            // =====================================
+            // SET CAR PRICE
+            // =====================================
+
+            pricePerDay =
+                Number(car.pricePerDay);
+
+
+            // =====================================
+            // DISPLAY RENTAL PRICE
+            // =====================================
+
+            const priceElement =
+                document.querySelector(
+                    ".summary-price strong"
+                );
+
+            if (priceElement) {
+
+                priceElement.innerHTML =
+                    "₹" +
+                    pricePerDay.toLocaleString("en-IN") +
+                    " <small>/ day</small>";
+
+            }
+
+
+            // =====================================
+            // DISPLAY INITIAL TOTAL
+            // =====================================
+
+            totalPrice.textContent =
+                "₹" +
+                pricePerDay.toLocaleString("en-IN");
+
+
+            console.log(
+                "Car name:",
+                car.name
+            );
+
+            console.log(
+                "Price per day:",
+                pricePerDay
+            );
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "BOOKING CAR ERROR:",
+                error
+            );
+
+            carName.textContent =
+                "Unable to load car";
+
+        });
+
+}
+
+
+// =====================================
+// SET MINIMUM DATE
+// =====================================
+
+const today =
+    new Date().toISOString().split("T")[0];
+
+pickup.min = today;
+
+returnDate.min = today;
+
+
+// =====================================
+// CALCULATE RENTAL PRICE
+// =====================================
+
+function calculatePrice() {
+
+    if (
+        pickup.value &&
+        returnDate.value
+    ) {
+
+        const start =
+            new Date(pickup.value);
+
+        const end =
+            new Date(returnDate.value);
+
+        const difference =
+            end - start;
+
+        const days =
+            difference /
+            (1000 * 60 * 60 * 24);
+
+
+        // =====================================
+        // VALID RENTAL PERIOD
+        // =====================================
+
+        if (days > 0) {
+
+            const total =
+                days * pricePerDay;
+
+            totalPrice.textContent =
+                "₹" +
+                total.toLocaleString("en-IN");
+
+        }
+
+        // =====================================
+        // INVALID / SAME DATE
+        // =====================================
+
+        else {
+
+            totalPrice.textContent =
+                "₹" +
+                pricePerDay.toLocaleString("en-IN");
+
+        }
+
+    }
+
+}
+
+
+// =====================================
+// DATE CHANGE EVENTS
+// =====================================
+
+pickup.addEventListener(
+    "change",
+    calculatePrice
+);
+
+returnDate.addEventListener(
+    "change",
+    calculatePrice
+);
+
+
+// =====================================
+// FORM SUBMISSION
+// =====================================
+
+bookingForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        // =====================================
+        // CHECK RETURN DATE
+        // =====================================
+
+        if (
+            pickup.value &&
+            returnDate.value &&
+            returnDate.value <= pickup.value
+        ) {
+
+            alert(
+                "Return date must be after pickup date."
+            );
+
+            return;
+
+        }
+
+
+        // =====================================
+        // GET FORM VALUES
+        // =====================================
+
+        const fullName =
+            document.getElementById("name").value;
+
+        const phone =
+            document.getElementById("phone").value;
+
+        const email =
+            document.getElementById("email").value;
+
+        const pickupLocation =
+            document.getElementById("location").value;
+
+
+        // =====================================
+        // CALCULATE TOTAL
+        // =====================================
+
+        const start =
+            new Date(pickup.value);
+
+        const end =
+            new Date(returnDate.value);
+
+        const difference =
+            end - start;
+
+        const days =
+            difference /
+            (1000 * 60 * 60 * 24);
+
+        const total =
+            days * pricePerDay;
+
+
+        // =====================================
+        // CREATE BOOKING DATA
+        // =====================================
+
+       // =====================================
+// VALIDATE CAR ID
+// =====================================
+
+if (!carId || Number(carId) <= 0) {
+
+    alert("Invalid car selection. Please select a car again.");
+
+    return;
+
+}
+
+
+// =====================================
+// CREATE BOOKING DATA
+// =====================================
+
+const bookingData = {
+
+    fullName: fullName,
+
+    phone: phone,
+
+    email: email,
+
+    pickupDate: pickup.value,
+
+    returnDate: returnDate.value,
+
+    pickupLocation: pickupLocation,
+
+    totalPrice: total,
+
+    carId: Number(carId)
+
+};
+
+
+        console.log(
+            "Sending booking:",
+            bookingData
+        );
+
+
+        // =====================================
+        // SEND BOOKING TO BACKEND
+        // =====================================
+
+        fetch(
+            "http://localhost:8080/api/bookings",
+            {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(bookingData)
+
+            }
+        )
+
+        .then(response => {
+
+            console.log(
+                "Booking response:",
+                response.status
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Booking failed: HTTP " +
+                    response.status
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(savedBooking => {
+
+            console.log(
+                "Booking saved successfully:",
+                savedBooking
+            );
+
+
+            // =====================================
+            // SHOW SUCCESS MESSAGE
+            // =====================================
+
+            successMessage.style.display =
+                "block";
+
+
+            // =====================================
+            // CHANGE BUTTON
+            // =====================================
+
+            const confirmButton =
+                bookingForm.querySelector(
+                    ".confirm-btn"
+                );
+
+            confirmButton.textContent =
+                "Booking Confirmed ✓";
+
+            confirmButton.style.background =
+                "#059669";
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "BOOKING ERROR:",
+                error
+            );
+
+            alert(
+                "Booking failed. Please try again."
+            );
+
+        });
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
